@@ -1,6 +1,5 @@
 <?php
 include "header.php";
-
 include "config.php";
 ?> 
  <div class="container-fluid py-4">
@@ -9,7 +8,7 @@ include "config.php";
         <div class="col-12">  
           <div class="card mb-4">
             <div class="col-5 pt-4 ps-3">
-          <button type="button" class="btn btn-primary" onclick="window.location.href='Tambah_Siswa.php'">Tambah Siswa</button>
+          <button type="button" class="btn btn-primary" onclick="window.location.href='Tambah_admin.php'">Tambah Siswa</button>
         </div>
             <div class="card-header pb-0">
               <h6>Authors table</h6>
@@ -20,9 +19,9 @@ include "config.php";
                   <thead>
                     <tr>
                       <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">No.</th>
-                      <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Nama</th>
-                      <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Kelas</th>
-                      <th class=" text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Jurusan</th>
+                      <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Username</th>
+                      <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Password</th>
+                      <th class=" text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Nama</th>
                       <th class=" text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Alamat</th>
                       <th class=" text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Aksi</th>
                     </tr>
@@ -31,7 +30,7 @@ include "config.php";
                     <tr>
                         <?php
                         $no = 1;
-                        $query = mysqli_query($connection, "select * from tbl_siswa");
+                        $query = mysqli_query($connection, "select * from tbl_admin");
                         foreach ($query as $Data): {
                             
                         }
@@ -44,28 +43,28 @@ include "config.php";
                         
                         <td class="align-middle ">
                           <div class="d-flex flex-column justify-content-center">
-                          <h6 class="mb-0 text-sm ps-3"><?= $Data['Nama']?></h6>
+                          <h6 class="mb-0 text-sm ps-3"><?= $Data['Username']?></h6>
                           </div>
                         </td>
                       </td>
                       <td class="align-middle">
-                        <p class="text-xs font-weight-bold mb-0 ps-3"><?= $Data['Kelas']?></p>
+                        <p class="text-xs font-weight-bold mb-0 ps-3"><?= $Data['Password']?></p>
                       </td>
                       <td class="align-middle text-sm">
-                        <span class="badge badge-sm bg-gradient-success ps-5  "><?= $Data['Jurusan']?></span>
+                        <span class="badge badge-sm bg-gradient-success pe-3 ps-3  "><?= $Data['Nama']?></span>
                       </td>
                       <td class="align-middle ">
                         <span class="text-secondary text-xs font-weight-bold ps-3"><?= $Data['Alamat']?></span>
                       </td>
                       <td class= align-middle>
-                          <Button type="button" class="btn btn-warning"><a href="edit_siswa.php ?id=<?=$Data['ID'];?>"
+                          <Button type="button" class="btn btn-warning"><a href="edit_admin.php ?id=<?=$Data['ID'];?>"
                           class = "text-secondary font-weight bold-text-xs text-white"
                           data-toggle= "tooltip"
                           data-original-title = "Edit Siswa">
                           Edit</a></Button>
                         </td>
                           <td class= align-middle>
-                          <Button type= "button" class = "btn btn-danger"><a href="delete_siswa.php ?id=<?=$Data['ID'];?>"
+                          <Button type= "button" class = "btn btn-danger"><a href="delete_admin.php ?id=<?=$Data['ID'];?>"
                           class = "text-secondary font-weight bold-text-xs text-white"
                           data-toggle= "tooltip"
                           data-original-title = "Edit Siswa">
