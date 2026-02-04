@@ -1,7 +1,8 @@
  <?php
- include "header.php";
+ include "../header/header.php";
  $ID = $_GET['id'] ?? null; 
- include "config.php";
+ include "../header/config.php";
+ $current_page = basename($_SERVER['PHP_SELF']);
  
  if ($_SERVER['REQUEST_METHOD'] == "POST") {
     $Nama = $_POST['nama'];
@@ -11,8 +12,10 @@
 
  
 
-    mysqli_query($connection, "UPDATE tbl_siswa SET Nama='$Nama', Kelas='$Kelas', Jurusan='$Jurusan', Alamat='$Alamat' where ID='$ID' ");
-    
+     $Data = mysqli_query($connection, "UPDATE tbl_siswa SET Nama='$Nama', Kelas='$Kelas', Jurusan='$Jurusan', Alamat='$Alamat' where ID='$ID' ");
+    if($Data){
+    $berhasil = true;
+    }
     
 };
 if($ID){
@@ -58,9 +61,16 @@ $siswa = mysqli_fetch_assoc($query);
         </div>
     </div>
 </div>
-<div class="card-shadow" style="width: 30%; padding: 20px;">
-       <div class="card-body">
-        <div class="container mt-5">
 
-        
-    </div>
+<?php if ($berhasil){ ?>
+  <script>
+  Swal.fire({
+  title: "Berhasil!",
+  text: "Data Sudah Ditambahkan!",
+  icon: "success",
+  showConfirmButton: false,
+}).then(() => {
+    window.location.href = "siswa.php";
+});
+  </script>
+<?php } ?>

@@ -1,6 +1,6 @@
  <?php
- include "header.php";
- include "config.php";
+ include "../header/header.php";
+ include "../header/config.php";
  
  if ($_SERVER['REQUEST_METHOD'] == "POST") {
     $Nama = $_POST['nama'];

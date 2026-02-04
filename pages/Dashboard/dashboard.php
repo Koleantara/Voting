@@ -1,5 +1,6 @@
 <?php
-include "header.php";
+ include "../header/header.php";
+ $current_page = basename($_SERVER['PHP_SELF']);
 ?>
     <div class="container-fluid py-4">
       <div class="row">

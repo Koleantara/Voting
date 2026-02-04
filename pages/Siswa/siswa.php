@@ -1,7 +1,7 @@
 <?php
-include "header.php";
-
-include "config.php";
+include "../header/header.php";
+include "../header/config.php";
+$current_page = basename($_SERVER['PHP_SELF']);
 ?> 
  <div class="container-fluid py-4">
       <div class="row">
@@ -58,15 +58,17 @@ include "config.php";
                         <span class="text-secondary text-xs font-weight-bold ps-3"><?= $Data['Alamat']?></span>
                       </td>
                       <td class= align-middle>
-                          <Button type="button" class="btn btn-warning"><a href="edit_siswa.php ?id=<?=$Data['ID'];?>"
+                          <Button type="button" class="btn btn-warning"><a href="Edit_siswa.php ?id=<?=$Data['ID'];?>"
                           class = "text-secondary font-weight bold-text-xs text-white"
                           data-toggle= "tooltip"
                           data-original-title = "Edit Siswa">
                           Edit</a></Button>
                         </td>
                           <td class= align-middle>
-                          <Button type= "button" class = "btn btn-danger"><a href="delete_siswa.php ?id=<?=$Data['ID'];?>"
+                          <Button type= "button" class = "btn btn-danger">
+                          <a href="#"
                           class = "text-secondary font-weight bold-text-xs text-white"
+                          onclick = "HapusSiswa(<?= $Data['ID']?>)"
                           data-toggle= "tooltip"
                           data-original-title = "Edit Siswa">
                           Delete</a></Button>
@@ -79,3 +81,24 @@ include "config.php";
         </div>
     </div>
 </div>
+<script>
+  function HapusSiswa(ID){
+    Swal.fire({
+  title: "Apakah Anda yakin?",
+  text: "Data Siswa akan dihapus PERMANENT",
+  showDenyButton: true,
+
+  confirmButtonText: "Hapus",
+  cancelButtonText: 'Tidak',
+
+}).then((result) => {
+  if (result.isConfirmed) {
+    window.location = 'delete_siswa.php?id= ' + ID;
+    Swal.fire("Saved!", "", "success");
+  } else if (result.isDenied) {
+    Swal.fire("Changes are not saved", "", "info");
+  }
+});
+
+  }
+</script>

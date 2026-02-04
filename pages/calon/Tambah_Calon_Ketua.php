@@ -1,6 +1,8 @@
  <?php
- include "header.php";
- include "config.php";
+ include "../header/header.php";
+ include "../header/config.php";
+
+ $current_page = basename($_SERVER['PHP_SELF']);
  
  if ($_SERVER['REQUEST_METHOD'] == "POST") {
     $Nama = $_POST['Nama'];
@@ -8,8 +10,12 @@
     $Misi = $_POST['Misi'];
     $Foto = $_POST['Foto'];
 
-    mysqli_query($connection, "INSERT INTO tbl_calon (Nama,Visi,Misi,Foto) VALUES('$Nama','$Visi','$Misi','$Foto')");
+    $Data = mysqli_query($connection, "INSERT INTO tbl_calon (Nama,Visi,Misi,Foto) VALUES('$Nama','$Visi','$Misi','$Foto')");
   };
+  if($Data){
+    $berhasil = true;
+  };
+ ?>
  ?>
 
 
@@ -44,9 +50,16 @@
         </div>
     </div>
 </div>
-<div class="card-shadow" style="width: 30%; padding: 20px;">
-       <div class="card-body">
-        <div class="container mt-5">
 
-        
-    </div>
+<?php if ($berhasil){ ?>
+  <script>
+  Swal.fire({
+  title: "Berhasil!",
+  text: "Data Sudah Ditambahkan!",
+  icon: "success",
+  showConfirmButton: false,
+}).then(() => {
+    window.location.href = "Calon_Ketua.php";
+});
+  </script>
+<?php } ?>

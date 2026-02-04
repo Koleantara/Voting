@@ -1,16 +1,23 @@
  <?php
- include "header.php";
- include "config.php";
- 
+ include "../header/header.php";
+ include "../header/config.php";
+
+ $current_page = basename($_SERVER['PHP_SELF']);
+
  if ($_SERVER['REQUEST_METHOD'] == "POST") {
     $Username = $_POST['Username'];
     $Password = $_POST['Password'];
     $Nama = $_POST['Nama'];
     $Alamat = $_POST['alamat'];
 
-    mysqli_query($connection, "INSERT INTO tbl_admin (Username,Password,Nama,Alamat) VALUES('$Username','$Password','$Nama','$Alamat')");
+    $Data = mysqli_query($connection, "INSERT INTO tbl_admin (Username,Password,Nama,Alamat) VALUES('$Username','$Password',$Nama','$Alamat')");
+    if($Data){
+    $berhasil = true;
   };
+  };
+  
  ?>
+ 
 
 
  <div class="container py-4">
@@ -44,9 +51,17 @@
         </div>
     </div>
 </div>
-<div class="card-shadow" style="width: 30%; padding: 20px;">
-       <div class="card-body">
-        <div class="container mt-5">
 
-        
-    </div>
+
+<?php if ($berhasil){ ?>
+  <script>
+  Swal.fire({
+  title: "Berhasil!",
+  text: "Data Sudah Ditambahkan!",
+  icon: "success",
+  showConfirmButton: false,
+}).then(() => {
+    window.location.href = "admin.php";
+});
+  </script>
+<?php } ?>

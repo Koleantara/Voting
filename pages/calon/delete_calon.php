@@ -1,5 +1,5 @@
  <?php
- include "config.php";
+ include "../header/config.php";
  $ID = $_GET['id'] ?? null; 
 
 
