@@ -28,7 +28,7 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
                      <h2 class="text-center">Tambah Siswa</h2>
             </div>
             <div class="card-body px-0 pt-0 pb-2">
-            <form method="POST" class=" px-9">
+            <form method="POST" class=" px-9" enctype = "multipart/form-data">
             <div class="mb-3">
                 <label for="nama" class="form-label">Nama</label>
                 <input type="text" class="form-control" id="nama" name="nama" required>

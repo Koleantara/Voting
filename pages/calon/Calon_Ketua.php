@@ -1,6 +1,6 @@
 <?php
  include "../header/header.php";
- include "../header/config.php";
+ include "../header/config.php";  
  $current_page = basename($_SERVER['PHP_SELF']);
 ?> 
  <div class="container-fluid py-4">
@@ -20,10 +20,11 @@
                   <thead>
                     <tr>
                       <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">No.</th>
+                      <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7"></th>
                       <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Nama</th>
                       <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Visi</th>
                       <th class=" text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Misi</th>
-                      <th class=" text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Foto</th>
+                    
                       <th class=" text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 justify-content-center">Aksi</th>
                     </tr>
                   </thead>
@@ -40,11 +41,19 @@
                         <div class="d-flex px-2 py-1">
                             <h6 class="ps-3 mb-0 text-sm justify-content-center align-middle text-center"><?= $no++?></h6>
                             </div>
-                      </td>
+                          </td>
+                      <td>
+                        <div>
+                          <img src="../../assets/<?php echo $Data['Foto']?>"
+                              class= "avatar avatar-md me-3 rounded-cirlce"
+                              style = "objec-fit: cover;" alt="test">
+                        </div>
                         
-                        <td class="align-middle ">
+                      </td>
+                      <td>
                           <div class="d-flex flex-column justify-content-center">
                           <h6 class="mb-0 text-sm ps-3"><?= $Data['Nama']?></h6>
+                          <p class="mb-0 text-sm ps-3"><?= $Data['Email']?></p>
                           </div>
                         </td>
                       </td>
@@ -54,9 +63,7 @@
                       <td class="align-middle text-sm">
                         <span class="badge badge-sm text-dark ps-3  "><?= $Data['Misi']?></span>
                       </td>
-                      <td class="align-middle ">
-                        <span class="text-secondary text-xs font-weight-bold ps-3"><?= $Data['Foto']?></span>
-                      </td>
+                      
                       <td class= "align-middle">
                           <Button type="button" class="btn btn-warning"><a href="edit_calon.php ?id=<?=$Data['ID'];?>"
                           class = "text-secondary font-weight bold-text-xs text-white"

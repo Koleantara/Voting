@@ -7,15 +7,23 @@
  if ($_SERVER['REQUEST_METHOD'] == "POST") {
     $Nama = $_POST['Nama'];
     $Visi = $_POST['Visi'];
-    $Misi = $_POST['Misi'];
-    $Foto = $_POST['Foto'];
+    $Misi = $_POST['Misi']; 
+    $Email = $_POST['Email'];
 
-    $Data = mysqli_query($connection, "INSERT INTO tbl_calon (Nama,Visi,Misi,Foto) VALUES('$Nama','$Visi','$Misi','$Foto')");
+    $Folder = "../../assets/";
+    
+    $namaFile = $_FILES['Foto']['name'];
+    $tmpFile = $_FILES['Foto']['tmp_name'];
+
+    $newName = time(). "_" . $namaFile;
+
+    move_uploaded_file($tmpFile, $Folder . $newName);
+
+    $query = mysqli_query($connection, "INSERT INTO tbl_calon (Nama,Email,Visi,Misi,Foto) VALUES('$Nama','$Email','$Visi','$Misi',' $newName')");
   };
-  if($Data){
-    $berhasil = true;
+  if($query){
+    $Berhasil = true;
   };
- ?>
  ?>
 
 
@@ -27,10 +35,14 @@
                      <h2 class="text-center">Tambah Calon</h2>
             </div>
             <div class="card-body px-0 pt-0 pb-2">
-            <form method="POST" class=" px-9">
+            <form method="POST" class=" px-9" enctype = multipart/form-data>
             <div class="mb-3">
                 <label for="nama" class="form-label">Nama</label>
                 <input type="text" class="form-control" id="nama" name="Nama" required>
+            </div>
+            <div class="mb-3">
+                <label for="nama" class="form-label">Email</label>
+                <input type="Email" class="form-control" id="Emain" name="Email" required>
             </div>
             <div class="mb-3">
                 <label for="visi" class="form-label">Visi</label>
@@ -40,9 +52,9 @@
                 <label for="misi" class="form-label">Misi</label>
                 <input type="text" class="form-control" id="jurusan" name="Misi" required>
             </div>
-            <div class="mb-3">
+            <div class="mb  -3">
                 <label for="Foto" class="form-label">Foto</label>
-                <textarea class="form-control" id="Foto" name="Foto" rows="3" required></textarea>
+                <input class = "form-control" name = "Foto" type="file">
             </div>
             <button type="submit" class="btn btn-primary">Tambah Siswa</button>
         </form>
@@ -51,7 +63,7 @@
     </div>
 </div>
 
-<?php if ($berhasil){ ?>
+<?php if ($Berhasil){ ?>
   <script>
   Swal.fire({
   title: "Berhasil!",

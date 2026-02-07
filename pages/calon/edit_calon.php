@@ -10,12 +10,17 @@
     $Visi = $_POST['Visi'];
     $Misi = $_POST['Misi'];
     $Foto = $_POST['Foto'];
+    $Email= $_POST['Email']
 
  
 
-    $Data = mysqli_query($connection, "UPDATE tbl_calon SET Nama='$Nama', Visi='$Visi', Misi='$Misi', Foto='$Foto' where ID='$ID' ");
+    $Data = mysqli_query($connection, "UPDATE tbl_calon SET Nama='$Nama', Email= '$Email', Visi='$Visi', Misi='$Misi', Foto='$Foto' where ID='$ID' ");
     
-    
+   $sql = "UPDATE tbl_calon set
+           nama = '$Nama'
+           visi ='$Visi'
+           misi = '$Misi'
+           where id_calon = '$ID'" 
 };
 if($ID){
     $query = mysqli_query($connection, "SELECT * FROM `tbl_calon` WHERE id = '$ID'");
@@ -33,7 +38,7 @@ $siswa = mysqli_fetch_assoc($query);
                      <h2 class="text-center">Tambah Siswa</h2>
             </div>
             <div class="card-body px-0 pt-0 pb-2">
-            <form method="POST" class=" px-9">
+            <form method="POST" class=" px-9" enctype = "multipart/form-data">
             <div class="mb-3">
                 <label for="nama" class="form-label">Nama</label>
                 <input type="text" class="form-control" id="nama" name="nama" value ="<?=
@@ -51,7 +56,7 @@ $siswa = mysqli_fetch_assoc($query);
             </div>
             <div class="mb-3">
                 <label for="Foto" class="form-label">Foto</label>
-                <input type="text "class="form-control" id="Foto" name="Foto" rows="3"  value ="<?=
+                <input type="file "class="form-control" id="Foto" name="Foto" rows="3"  value ="<?=
                 $siswa['Foto']; ?>"></input>
             </div>
             <button type="submit" class="btn btn-primary">Tambah Siswa</button>
