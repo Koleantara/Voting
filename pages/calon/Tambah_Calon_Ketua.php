@@ -10,7 +10,7 @@
     $Misi = $_POST['Misi']; 
     $Email = $_POST['Email'];
 
-    $Folder = "../../assets/";
+    $Folder = "../../assets_awal/";
     
     $namaFile = $_FILES['Foto']['name'];
     $tmpFile = $_FILES['Foto']['tmp_name'];
@@ -19,7 +19,8 @@
 
     move_uploaded_file($tmpFile, $Folder . $newName);
 
-    $query = mysqli_query($connection, "INSERT INTO tbl_calon (Nama,Email,Visi,Misi,Foto) VALUES('$Nama','$Email','$Visi','$Misi',' $newName')");
+    $query = mysqli_query($connection, "INSERT INTO tbl_calon (Nama,Email,Visi,Misi,Foto) 
+    VALUES('$Nama','$Email','$Visi','$Misi','$newName')");
   };
   if($query){
     $Berhasil = true;
